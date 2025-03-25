@@ -30,15 +30,15 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
   }, [hasVisited, accessGranted, onAccessGranted]);
 
   const verifyFile = async (file: File): Promise<boolean> => {
-    // First, check file type
+    // First, check file type but don't reveal what we're looking for
     if (!file.type.includes('image/gif')) {
-      setErrorMessage("File must be a GIF image");
+      setErrorMessage("Invalid key format. Access denied.");
       return false;
     }
 
-    // Check if it's named correctly
+    // Check if it's named correctly but don't reveal the name
     if (file.name.toLowerCase() !== 'chunky.gif') {
-      setErrorMessage("This is not the correct GIF");
+      setErrorMessage("Invalid key file. Access denied.");
       return false;
     }
 
@@ -74,7 +74,7 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
         console.log("Dimension mismatch", 
           {uploadedWidth: uploadedImage.naturalWidth, originalWidth: originalImage.naturalWidth,
            uploadedHeight: uploadedImage.naturalHeight, originalHeight: originalImage.naturalHeight});
-        setErrorMessage("This isn't the correct chunky.gif - dimensions don't match");
+        setErrorMessage("Invalid key signature. Access denied.");
         URL.revokeObjectURL(uploadedURL);
         return false;
       }
@@ -118,7 +118,7 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
             mismatchCount++;
             if (mismatchCount > mismatchThreshold) {
               console.log("Pixel data mismatch");
-              setErrorMessage("This isn't the correct chunky.gif - content doesn't match");
+              setErrorMessage("Authentication failed. Key verification error.");
               URL.revokeObjectURL(uploadedURL);
               return false;
             }
@@ -134,7 +134,7 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
       return true;
     } catch (error) {
       console.error("Error verifying file:", error);
-      setErrorMessage("Error verifying the file");
+      setErrorMessage("Authentication system error. Try again later.");
       return false;
     }
   };
@@ -219,10 +219,10 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
                   upload_file
                 </span>
                 <h3 className="font-medium text-lg text-gray-800 mb-2">
-                  Upload the Secret GIF
+                  Enter The Secret Key
                 </h3>
                 <p className="text-sm text-gray-600 max-w-md">
-                  Drag and drop the correct GIF file, or click to browse your files
+                  Upload the special key file to gain access to the secret area
                 </p>
                 {errorMessage && (
                   <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
@@ -263,10 +263,10 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
             <div>
               <h3 className="text-sm font-bold text-gray-700 mb-1">Instructions:</h3>
               <ul className="text-xs text-gray-600 list-disc list-inside">
-                <li className="mb-1">Find the file named "chunky.gif"</li>
-                <li className="mb-1">Drag and drop it into the upload area</li>
-                <li className="mb-1">Alternatively, click "Browse Files" to select it</li>
-                <li>Only the correct GIF file will grant you access</li>
+                <li className="mb-1">You need the secret key file to enter</li>
+                <li className="mb-1">Only those who have been granted the key can access</li>
+                <li className="mb-1">Drag and drop your key file into the upload area</li>
+                <li>Or click "Browse Files" to locate it on your device</li>
               </ul>
             </div>
           </div>

@@ -44,61 +44,63 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
           <div className={`access-indicator ${accessGranted ? 'granted bg-green-500' : 'bg-gray-300'}`}></div>
           
           <div className="text-center">
-            <h2 className="font-pixel text-xl text-primary mb-6">Secret Content Unlocked!</h2>
+            <h2 className="font-pixel text-2xl text-primary mb-8">ACCESS GRANTED</h2>
             
-            <div className="flex justify-center mb-6">
-              <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center">
-                <span className="material-icons text-white text-4xl">lock_open</span>
+            <div className="flex justify-center mb-8">
+              <div className="w-32 h-32 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                <span className="material-icons text-white text-5xl">lock_open</span>
               </div>
             </div>
             
-            {/* Example content tabs */}
-            <div className="border-b border-gray-200 mb-6">
+            {/* Navigation tabs */}
+            <div className="border-b border-gray-200 mb-8">
               <div className="flex justify-center">
-                <button className="px-4 py-2 font-medium text-primary border-b-2 border-primary">Home</button>
-                <button className="px-4 py-2 font-medium text-gray-500 hover:text-primary">Gallery</button>
-                <button className="px-4 py-2 font-medium text-gray-500 hover:text-primary">About</button>
-                <button className="px-4 py-2 font-medium text-gray-500 hover:text-primary">Contact</button>
+                <button className="px-4 py-2 font-medium text-primary border-b-2 border-primary">Dashboard</button>
+                <button className="px-4 py-2 font-medium text-gray-500 hover:text-primary">Files</button>
+                <button className="px-4 py-2 font-medium text-gray-500 hover:text-primary">Settings</button>
+                <button className="px-4 py-2 font-medium text-gray-500 hover:text-primary">Admin</button>
               </div>
             </div>
             
             {/* Content after authentication */}
             <div className="max-w-lg mx-auto text-left">
-              <h3 className="font-bold text-lg mb-3 text-gray-800">🎉 Chunky's Secret Club - Welcome! 🎉</h3>
-              <p className="text-gray-700 mb-4">
-                Congratulations on finding and uploading the correct chunky.gif file! You're now one of the few who know Chunky's secret dance moves. This content is only visible to true Chunky fans!
+              <h3 className="font-bold text-xl mb-4 text-gray-800">🔐 The Secure Vault - Welcome!</h3>
+              <p className="text-gray-700 mb-6">
+                Congratulations on successfully authenticating with the secret key! Very few people have access to this restricted area. You've proven that you possess the required credentials.
               </p>
               
-              <div className="bg-gray-50 p-5 rounded-lg mb-6 border border-gray-200">
-                <h4 className="font-bold text-lg text-primary mb-3">About Chunky</h4>
-                <p className="text-gray-700 mb-3">
-                  Chunky, the dancing character from the GIF, has been an internet sensation since the early days of GIFs. His unique moves and adorable appearance have made him a beloved figure among internet culture enthusiasts.
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg mb-8 border border-gray-200 shadow-sm">
+                <h4 className="font-bold text-lg text-primary mb-4">Authorized Personnel Only</h4>
+                <p className="text-gray-700 mb-4">
+                  This secure area contains special content only accessible to authenticated users. Your key has been verified and your access privileges have been confirmed.
                 </p>
-                <p className="text-gray-700">
-                  By the way, if you don't have the GIF yet, you can right-click and save the image below to gain access to this page in the future:
-                </p>
-                <div className="flex justify-center my-4">
-                  <img src={originalGifPath} alt="Chunky GIF" className="border border-gray-300 rounded" />
+                
+                <div className="flex justify-center my-6 bg-white p-4 rounded-lg border border-gray-300">
+                  <img src={originalGifPath} alt="Secret Key" className="border border-gray-300 rounded shadow-sm" />
                 </div>
+                
+                <p className="text-gray-700 text-sm italic text-center">
+                  The key you used for authentication is displayed above for verification purposes.
+                </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <h4 className="font-bold text-sm text-primary mb-2">Chunky Fan Status</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                  <h4 className="font-bold text-sm text-primary mb-3">Access Level</h4>
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">Authorized</span>
+                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">Authenticated</span>
                     <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">Verified</span>
-                    <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded">True Fan</span>
+                    <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded">High Clearance</span>
                   </div>
                 </div>
                 
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <h4 className="font-bold text-sm text-primary mb-2">Exclusive Benefits</h4>
+                <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                  <h4 className="font-bold text-sm text-primary mb-3">Authorized Features</h4>
                   <ul className="text-sm text-gray-700 list-disc pl-5">
-                    <li>Access to all Chunky GIFs</li>
-                    <li>Chunky dance tutorial videos</li>
-                    <li>Behind-the-scenes Chunky content</li>
-                    <li>Meet other Chunky enthusiasts</li>
+                    <li>Access to secure documents</li>
+                    <li>Encrypted message system</li>
+                    <li>Secure file storage</li>
+                    <li>Priority support channel</li>
                   </ul>
                 </div>
               </div>
