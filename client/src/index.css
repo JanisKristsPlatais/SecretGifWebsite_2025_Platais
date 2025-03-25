@@ -26,3 +26,16 @@
 .access-indicator.granted {
   background-color: #10b981;
 }
+
+/* Custom font class for pixelated text */
+.font-pixel {
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to right, #7c3aed, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
