@@ -54,17 +54,17 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
             
             {/* Content after authentication */}
             <div className="max-w-lg mx-auto text-left">
-              <h3 className="font-bold text-xl mb-4 text-gray-800">🎮 Secret Gaming Achievement Unlocked!</h3>
+              <h3 className="font-bold text-xl mb-4 text-gray-800">🔐 Secret Area Unlocked!</h3>
               <p className="text-gray-700 mb-6">
-                Congratulations on successfully authenticating with the secret key! You've discovered the hidden Nidoking zone that very few people know about. 
-                You've proven yourself to be a true Pokémon master!
+                Congratulations on successfully authenticating with the secret key! You've discovered the hidden area that very few people know about. 
+                This exclusive content is only available to those who possess the secret GIF.
               </p>
               
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-lg mb-8 border border-purple-200 shadow-sm">
-                <h4 className="font-bold text-lg text-primary mb-4">Nidoking Fan Club - Elite Member</h4>
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg mb-8 border border-blue-200 shadow-sm">
+                <h4 className="font-bold text-lg text-primary mb-4">Exclusive Access Granted</h4>
                 <p className="text-gray-700 mb-4">
-                  Welcome to the exclusive Nidoking Fan Club! As one of the few trainers who discovered this secret area,
-                  you've earned special recognition and access to rare content.
+                  Welcome to the restricted area! As one of the few visitors who discovered this secret space,
+                  you've earned special recognition and access to hidden content.
                 </p>
                 
                 <div className="flex justify-center my-6 bg-white p-4 rounded-lg border border-gray-300">
@@ -72,65 +72,65 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
                 </div>
                 
                 <p className="text-gray-700 text-sm italic text-center">
-                  The legendary Nidoking animation you used to unlock this area!
+                  The secret key you used to unlock this area!
                 </p>
               </div>
               
-              <div className="bg-white rounded-lg border border-purple-200 mb-8 overflow-hidden">
-                <div className="p-4 bg-purple-50 border-b border-purple-200">
-                  <h4 className="font-medium text-purple-900">Nidoking Fun Facts</h4>
+              <div className="bg-white rounded-lg border border-blue-200 mb-8 overflow-hidden">
+                <div className="p-4 bg-blue-50 border-b border-blue-200">
+                  <h4 className="font-medium text-blue-900">Secret Society</h4>
                 </div>
                 
                 <div className="p-4 space-y-3">
                   <div className="flex items-start">
-                    <span className="material-icons text-purple-600 mr-2 text-sm">stars</span>
+                    <span className="material-icons text-blue-600 mr-2 text-sm">verified</span>
                     <p className="text-sm text-gray-700">
-                      Nidoking is a Poison/Ground type Pokémon introduced in Generation I.
+                      You are now part of an exclusive group of people who know about this hidden area.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <span className="material-icons text-purple-600 mr-2 text-sm">stars</span>
+                    <span className="material-icons text-blue-600 mr-2 text-sm">verified</span>
                     <p className="text-sm text-gray-700">
-                      It evolves from Nidorino when exposed to a Moon Stone.
+                      This verification system ensures that only those with the exact key can enter.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <span className="material-icons text-purple-600 mr-2 text-sm">stars</span>
+                    <span className="material-icons text-blue-600 mr-2 text-sm">verified</span>
                     <p className="text-sm text-gray-700">
-                      Nidoking's tail is so powerful that it can snap a telephone pole as if it were a twig.
+                      The secret GIF serves as both a challenge and a password - only the truly resourceful can find it.
                     </p>
                   </div>
                   <div className="flex items-start">
-                    <span className="material-icons text-purple-600 mr-2 text-sm">stars</span>
+                    <span className="material-icons text-blue-600 mr-2 text-sm">verified</span>
                     <p className="text-sm text-gray-700">
-                      In the original Pokémon games, Giovanni, the Team Rocket boss, had a powerful Nidoking in his team.
+                      This authentication method is unique and much more interesting than typical username/password systems.
                     </p>
                   </div>
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
-                <div className="bg-white p-5 rounded-lg border border-purple-200 shadow-sm">
-                  <h4 className="font-bold text-sm text-purple-800 mb-3">Member Status</h4>
+                <div className="bg-white p-5 rounded-lg border border-blue-200 shadow-sm">
+                  <h4 className="font-bold text-sm text-blue-800 mb-3">Access Level</h4>
                   <div className="flex flex-wrap gap-2">
                     <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">Authenticated</span>
-                    <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded">Elite Trainer</span>
-                    <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">Secret Finder</span>
+                    <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">Secret Keeper</span>
+                    <span className="bg-indigo-600 text-white text-xs px-2 py-1 rounded">Elite Access</span>
                   </div>
                 </div>
                 
-                <div className="bg-white p-5 rounded-lg border border-purple-200 shadow-sm">
-                  <h4 className="font-bold text-sm text-purple-800 mb-3">Elite Perks</h4>
+                <div className="bg-white p-5 rounded-lg border border-blue-200 shadow-sm">
+                  <h4 className="font-bold text-sm text-blue-800 mb-3">Exclusive Privileges</h4>
                   <ul className="text-sm text-gray-700 list-disc pl-5">
-                    <li>Secret Nidoking evolution strategies</li>
-                    <li>Hidden game tips and tricks</li>
-                    <li>Exclusive fan art collection</li>
-                    <li>Priority Pokémon trading opportunities</li>
+                    <li>Knowledge of this secret area</li>
+                    <li>Access to hidden content</li>
+                    <li>Bragging rights among friends</li>
+                    <li>The satisfaction of solving the puzzle</li>
                   </ul>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 rounded-lg text-white mb-8">
+              <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 rounded-lg text-white mb-8">
                 <h4 className="font-bold text-lg mb-3">🏆 Achievement Unlocked</h4>
                 <p className="mb-2">
                   "Secret Key Master" - You've successfully discovered and used a secret key to access hidden content.
