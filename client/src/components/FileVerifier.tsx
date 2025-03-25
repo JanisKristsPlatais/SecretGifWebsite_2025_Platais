@@ -27,7 +27,7 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
     }
   }, [hasVisited, accessGranted, onAccessGranted]);
 
-  const verifyFile = (file: File): boolean => {
+  const verifyFile = async (file: File): Promise<boolean> => {
     // Check file type
     if (!file.type.includes('image/gif')) {
       setErrorMessage("File must be a GIF image");
@@ -40,8 +40,28 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
       return false;
     }
 
-    setErrorMessage(null);
-    return true;
+    // Calculate file hash
+    try {
+      const buffer = await file.arrayBuffer();
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      
+      // This is the hash of the original chunky.gif file
+      const expectedHash = '91bea7b8ba0faae4e7c6fecb5b87612bd9e6affd01dac442ad2f9b73c95c65d5';
+      
+      if (hashHex !== expectedHash) {
+        setErrorMessage("This isn't the correct chunky.gif");
+        return false;
+      }
+      
+      setErrorMessage(null);
+      return true;
+    } catch (error) {
+      console.error("Error verifying file:", error);
+      setErrorMessage("Error verifying the file");
+      return false;
+    }
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -55,7 +75,7 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
     setIsDragging(false);
   };
 
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDrop = async (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     
@@ -64,7 +84,8 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       const file = files[0];
-      if (verifyFile(file)) {
+      const isValid = await verifyFile(file);
+      if (isValid === true) {
         setShowConfetti(true);
         onAccessGranted();
         
@@ -76,13 +97,14 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
     }
   };
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (accessGranted) return;
     
     const files = e.target.files;
     if (files && files.length > 0) {
       const file = files[0];
-      if (verifyFile(file)) {
+      const isValid = await verifyFile(file);
+      if (isValid === true) {
         setShowConfetti(true);
         onAccessGranted();
         

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FileVerifier from "@/components/FileVerifier";
+import FileVerifier from "../components/FileVerifier";
 import HiddenContent from "@/components/HiddenContent";
 import { useAccessStore } from "@/lib/useAccessStore";
 import { apiRequest } from "@/lib/queryClient";
