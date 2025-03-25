@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Confetti from "./Confetti";
+// Import the original GIF directly
+import originalGifPath from "@assets/chunky.gif";
 
 interface FileVerifierProps {
   onAccessGranted: () => void;
@@ -28,33 +30,106 @@ export default function FileVerifier({ onAccessGranted, accessGranted, hasVisite
   }, [hasVisited, accessGranted, onAccessGranted]);
 
   const verifyFile = async (file: File): Promise<boolean> => {
-    // Check file type
+    // First, check file type
     if (!file.type.includes('image/gif')) {
       setErrorMessage("File must be a GIF image");
       return false;
     }
 
-    // Check if it's the correct file (chunky.gif)
+    // Check if it's named correctly
     if (file.name.toLowerCase() !== 'chunky.gif') {
       setErrorMessage("This is not the correct GIF");
       return false;
     }
 
-    // Calculate file hash
+    // Now, let's do a deeper verification by making a visual comparison
     try {
-      const buffer = await file.arrayBuffer();
-      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      // Create an image element for the uploaded file
+      const uploadedImg = document.createElement('img');
+      const uploadedURL = URL.createObjectURL(file);
       
-      // This is the hash of the original chunky.gif file
-      const expectedHash = '91bea7b8ba0faae4e7c6fecb5b87612bd9e6affd01dac442ad2f9b73c95c65d5';
+      // Wait for the uploaded image to load
+      const uploadPromise = new Promise<HTMLImageElement>((resolve, reject) => {
+        uploadedImg.onload = () => resolve(uploadedImg);
+        uploadedImg.onerror = reject;
+        uploadedImg.src = uploadedURL;
+      });
       
-      if (hashHex !== expectedHash) {
-        setErrorMessage("This isn't the correct chunky.gif");
+      // Create an image element for the original file
+      const originalImg = document.createElement('img');
+      
+      // Wait for the original image to load
+      const originalPromise = new Promise<HTMLImageElement>((resolve, reject) => {
+        originalImg.onload = () => resolve(originalImg);
+        originalImg.onerror = reject;
+        originalImg.src = originalGifPath;
+      });
+      
+      // Wait for both images to load
+      const [uploadedImage, originalImage] = await Promise.all([uploadPromise, originalPromise]);
+      
+      // Compare dimensions
+      if (uploadedImage.naturalWidth !== originalImage.naturalWidth || 
+          uploadedImage.naturalHeight !== originalImage.naturalHeight) {
+        console.log("Dimension mismatch", 
+          {uploadedWidth: uploadedImage.naturalWidth, originalWidth: originalImage.naturalWidth,
+           uploadedHeight: uploadedImage.naturalHeight, originalHeight: originalImage.naturalHeight});
+        setErrorMessage("This isn't the correct chunky.gif - dimensions don't match");
+        URL.revokeObjectURL(uploadedURL);
         return false;
       }
       
+      // Create canvas elements to compare pixel data
+      const uploadedCanvas = document.createElement('canvas');
+      const originalCanvas = document.createElement('canvas');
+      
+      // Set canvas dimensions to match images
+      uploadedCanvas.width = uploadedImage.naturalWidth;
+      uploadedCanvas.height = uploadedImage.naturalHeight;
+      originalCanvas.width = originalImage.naturalWidth;
+      originalCanvas.height = originalImage.naturalHeight;
+      
+      // Get canvas contexts
+      const uploadedCtx = uploadedCanvas.getContext('2d');
+      const originalCtx = originalCanvas.getContext('2d');
+      
+      if (uploadedCtx && originalCtx) {
+        // Draw images onto canvases
+        uploadedCtx.drawImage(uploadedImage, 0, 0);
+        originalCtx.drawImage(originalImage, 0, 0);
+        
+        // Get image data
+        const uploadedData = uploadedCtx.getImageData(0, 0, uploadedCanvas.width, uploadedCanvas.height);
+        const originalData = originalCtx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
+        
+        // Compare a subset of pixels (checking every pixel might be too intensive)
+        const pixelCheckInterval = 10; // Check every 10th pixel
+        const pixelCount = uploadedData.data.length / 4; // RGBA values
+        
+        let mismatchCount = 0;
+        const mismatchThreshold = 10; // Allow for a small number of mismatches
+        
+        for (let i = 0; i < pixelCount; i += pixelCheckInterval) {
+          const idx = i * 4;
+          // Check RGB values (ignore alpha for GIFs)
+          if (uploadedData.data[idx] !== originalData.data[idx] ||
+              uploadedData.data[idx + 1] !== originalData.data[idx + 1] ||
+              uploadedData.data[idx + 2] !== originalData.data[idx + 2]) {
+            mismatchCount++;
+            if (mismatchCount > mismatchThreshold) {
+              console.log("Pixel data mismatch");
+              setErrorMessage("This isn't the correct chunky.gif - content doesn't match");
+              URL.revokeObjectURL(uploadedURL);
+              return false;
+            }
+          }
+        }
+      }
+      
+      // Clean up object URL
+      URL.revokeObjectURL(uploadedURL);
+      
+      // If we get here, it's passed all our checks
       setErrorMessage(null);
       return true;
     } catch (error) {
