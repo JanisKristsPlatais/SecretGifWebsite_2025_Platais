@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import DragGame from "@/components/DragGame";
+import FileVerifier from "@/components/FileVerifier";
 import HiddenContent from "@/components/HiddenContent";
 import { useAccessStore } from "@/lib/useAccessStore";
 import { apiRequest } from "@/lib/queryClient";
@@ -44,15 +44,15 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8 flex flex-col items-center">
         <header className="w-full max-w-2xl text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-pixel text-primary mb-4">
-            Nidoking Access Portal
+            Secret Content Portal
           </h1>
           <p className="text-gray-700 text-sm md:text-base max-w-md mx-auto">
-            Drag the Nidoking to the drop zone to access the site's content.
+            Drag the correct GIF file to access this website's content.
           </p>
         </header>
 
         <div id="gameContainer" className="w-full max-w-2xl">
-          <DragGame 
+          <FileVerifier 
             onAccessGranted={handleAccessGranted} 
             accessGranted={accessGranted} 
             hasVisited={hasVisited}
@@ -64,8 +64,7 @@ export default function Home() {
         </div>
 
         <footer className="mt-8 text-center text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} Nidoking's Realm. This is a demo drag &amp; drop interaction.</p>
-          <p className="mt-1">Nidoking is a Pokémon character owned by Nintendo/Game Freak.</p>
+          <p>© {new Date().getFullYear()} Secret Content Portal. Only authorized visitors can access this site.</p>
         </footer>
       </div>
     </div>

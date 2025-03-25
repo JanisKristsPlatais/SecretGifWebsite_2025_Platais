@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import nidokingImage from "@assets/chunky.gif";
 
 interface HiddenContentProps {
   accessGranted: boolean;
@@ -44,14 +43,12 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
           <div className={`access-indicator ${accessGranted ? 'granted bg-green-500' : 'bg-gray-300'}`}></div>
           
           <div className="text-center">
-            <h2 className="font-pixel text-xl text-primary mb-6">Welcome to Nidoking's Realm!</h2>
+            <h2 className="font-pixel text-xl text-primary mb-6">Secret Content Unlocked!</h2>
             
             <div className="flex justify-center mb-6">
-              <img 
-                src={nidokingImage} 
-                alt="Nidoking Pokémon" 
-                className="w-24 h-24 object-contain mx-auto mb-4"
-              />
+              <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center">
+                <span className="material-icons text-white text-4xl">lock_open</span>
+              </div>
             </div>
             
             {/* Example content tabs */}
@@ -66,26 +63,26 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
             
             {/* Example content */}
             <div className="max-w-lg mx-auto text-left">
-              <h3 className="font-bold text-lg mb-3 text-gray-800">Nidoking Information</h3>
+              <h3 className="font-bold text-lg mb-3 text-gray-800">Welcome to the Secret Area</h3>
               <p className="text-gray-700 mb-4">
-                Nidoking is a dual-type Poison/Ground Pokémon introduced in Generation I. It evolves from Nidorino when exposed to a Moon Stone. It is the final form of Nidoran♂.
+                Congratulations on finding and uploading the correct GIF file! This content is only visible to those who have the specific file required for access.
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-gray-50 p-3 rounded">
-                  <h4 className="font-bold text-sm text-primary mb-2">Type</h4>
+                  <h4 className="font-bold text-sm text-primary mb-2">Security Level</h4>
                   <div className="flex space-x-2">
-                    <span className="bg-purple-500 text-white text-xs px-2 py-1 rounded">Poison</span>
-                    <span className="bg-yellow-600 text-white text-xs px-2 py-1 rounded">Ground</span>
+                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">Authorized</span>
+                    <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">Verified</span>
                   </div>
                 </div>
                 
                 <div className="bg-gray-50 p-3 rounded">
-                  <h4 className="font-bold text-sm text-primary mb-2">Abilities</h4>
+                  <h4 className="font-bold text-sm text-primary mb-2">Features</h4>
                   <ul className="text-sm text-gray-700">
-                    <li>Poison Point</li>
-                    <li>Rivalry</li>
-                    <li>Sheer Force (Hidden)</li>
+                    <li>Exclusive content</li>
+                    <li>Special access</li>
+                    <li>Members only area</li>
                   </ul>
                 </div>
               </div>
@@ -96,7 +93,7 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
                   className="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 flex items-center mx-auto"
                 >
                   <span className="material-icons mr-1">replay</span>
-                  Reset Drag &amp; Drop Game
+                  Reset Authentication
                 </button>
               </div>
             </div>
