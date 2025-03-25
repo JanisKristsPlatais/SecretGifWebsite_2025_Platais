@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import FileVerifier from "../components/FileVerifier";
-import HiddenContent from "@/components/HiddenContent";
-import { useAccessStore } from "@/lib/useAccessStore";
-import { apiRequest } from "@/lib/queryClient";
+import HiddenContent from "../components/HiddenContent";
+import { useAccessStore } from "../lib/useAccessStore";
+import { apiRequest } from "../lib/queryClient";
 
 export default function Home() {
   const { accessGranted, grantAccess, resetAccess } = useAccessStore();
