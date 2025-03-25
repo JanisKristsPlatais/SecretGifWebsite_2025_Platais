@@ -26,7 +26,7 @@ export default function DragSource({ onDragStart, onDragEnd, isDragging, disable
   const handleDragStart = (e: React.DragEvent) => {
     if (disabled) return;
     
-    e.dataTransfer.setData("text/plain", "nidoking");
+    e.dataTransfer.setData("text/plain", "secretgif");
     setIsGrabbed(true);
     onDragStart();
   };
@@ -88,7 +88,7 @@ export default function DragSource({ onDragStart, onDragEnd, isDragging, disable
       >
         <img
           src={nidokingImage}
-          alt="Nidoking Pokémon"
+          alt="Secret Gif"
           className="w-32 h-32 object-contain pointer-events-none"
         />
         <div className="mt-4 text-center text-xs text-gray-500 font-pixel">

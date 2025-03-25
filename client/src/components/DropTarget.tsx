@@ -38,7 +38,7 @@ export default function DropTarget({ onDrop, isDragging, disabled }: DropTargetP
     e.preventDefault();
     const data = e.dataTransfer.getData("text/plain");
     
-    if (data === "nidoking" && !disabled) {
+    if (data === "secretgif" && !disabled) {
       setHasDropped(true);
       onDrop();
     }
@@ -97,7 +97,7 @@ export default function DropTarget({ onDrop, isDragging, disabled }: DropTargetP
         {hasDropped ? (
           <img 
             src={nidokingImage} 
-            alt="Nidoking Pokémon" 
+            alt="Secret Gif" 
             className="w-24 h-24 object-contain"
           />
         ) : (

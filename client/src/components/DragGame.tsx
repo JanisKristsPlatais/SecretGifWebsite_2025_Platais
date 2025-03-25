@@ -94,7 +94,7 @@ export default function DragGame({ onAccessGranted, accessGranted, hasVisited }:
             <div>
               <h3 className="text-sm font-bold text-gray-700 mb-1">How to access:</h3>
               <ul className="text-xs text-gray-600 list-disc list-inside">
-                <li className="mb-1">Drag the Nidoking to the drop zone</li>
+                <li className="mb-1">Drag the SecretGif to the drop zone</li>
                 <li className="mb-1">On mobile, tap and hold to drag</li>
                 <li className="mb-1">Release to drop and unlock content</li>
                 <li>
