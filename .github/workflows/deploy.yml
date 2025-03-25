@@ -22,8 +22,12 @@ jobs:
       - name: Build
         run: npm run build
         
+      - name: Copy index.html to root
+        run: cp dist/public/index.html dist/public/404.html
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/public
+          enable_jekyll: false
