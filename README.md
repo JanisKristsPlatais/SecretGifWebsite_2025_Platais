@@ -1,4 +1,5 @@
-# Secret GIF Access Portal
+# SecretGif Website
+https://janiskristsplatais.github.io/SecretGifWebsite_2025_Platais/
 
 An interactive web application that uses a file upload authentication mechanism. Users must upload a specific GIF file to gain access to the site's content.
 
