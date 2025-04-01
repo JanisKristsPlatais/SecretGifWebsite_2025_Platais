@@ -39,6 +39,17 @@ export default function Home() {
     updateAccessStatus();
   };
   
+  const handleReset = async () => {
+    resetAccess();
+    setHasVisited(false);
+    // Reset the access status on the server
+    try {
+      await apiRequest("POST", "/api/access-status", { hasAccess: false });
+    } catch (error) {
+      console.error("Error resetting access status:", error);
+    }
+  };
+  
   return (
     <div className="bg-gray-100 min-h-screen font-sans">
       <div className="container mx-auto px-4 py-8 flex flex-col items-center">
@@ -59,7 +70,7 @@ export default function Home() {
           />
           <HiddenContent 
             accessGranted={accessGranted} 
-            onReset={resetAccess}
+            onReset={handleReset}
           />
         </div>
 
