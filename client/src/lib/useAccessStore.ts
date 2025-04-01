@@ -11,3 +11,4 @@ export const useAccessStore = create<AccessStore>((set) => ({
   grantAccess: () => set({ accessGranted: true }),
   resetAccess: () => set({ accessGranted: false }),
 }));
+ 

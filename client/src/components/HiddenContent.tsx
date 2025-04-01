@@ -157,3 +157,4 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
     </AnimatePresence>
   );
 }
+ 
