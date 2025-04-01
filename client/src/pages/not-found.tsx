@@ -12,8 +12,13 @@ export default function NotFound() {
           </div>
 
           <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
+            The page you're looking for doesn't exist in the SecretGif Website.
           </p>
+          <div className="mt-4">
+            <a href="/" className="text-primary hover:underline text-sm">
+              Return to Home Page
+            </a>
+          </div>
         </CardContent>
       </Card>
     </div>

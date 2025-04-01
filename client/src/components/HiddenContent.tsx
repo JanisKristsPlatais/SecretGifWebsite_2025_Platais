@@ -56,7 +56,7 @@ export default function HiddenContent({ accessGranted, onReset }: HiddenContentP
             <div className="max-w-lg mx-auto text-left">
               <h3 className="font-bold text-xl mb-4 text-gray-800">🔐 Secret Area Unlocked!</h3>
               <p className="text-gray-700 mb-6">
-                Congratulations on successfully authenticating with the secret key! You've discovered the hidden area that very few people know about. 
+                Congratulations on successfully authenticating with the secret key! You've discovered the hidden area of the SecretGif Website that very few people know about. 
                 This exclusive content is only available to those who possess the secret GIF.
               </p>
               
