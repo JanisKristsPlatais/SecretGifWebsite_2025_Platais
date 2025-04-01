@@ -29,6 +29,20 @@ This application is configured to deploy automatically to GitHub Pages when chan
 2. Navigate to the "Pages" section
 3. Set the source to "GitHub Actions"
 
+### Routing on GitHub Pages
+
+The application implements custom handling for GitHub Pages routing:
+- A custom 404.html page handles redirects to maintain proper paths
+- The router automatically detects if it's running on GitHub Pages
+- The base URL path is adjusted to `/SecretGifWebsite_2025_Platais` for GitHub Pages
+
+### Troubleshooting 404 Errors
+
+If you encounter 404 errors after deployment:
+1. Make sure the repository name in the code matches your actual repository name
+2. Check that the GitHub Pages site is properly configured
+3. Try accessing the site directly at the root URL: `https://[username].github.io/SecretGifWebsite_2025_Platais/`
+
 ### Manual Deployment
 
 If you want to deploy manually:
@@ -36,6 +50,7 @@ If you want to deploy manually:
 1. Build the static version: `npx vite build --config vite.config.github.ts`
 2. The built files will be in the `dist/public` directory
 3. These files can be deployed to any static hosting provider
+4. Make sure to include the 404.html file in your deployment
 
 ## Authentication Process
 
